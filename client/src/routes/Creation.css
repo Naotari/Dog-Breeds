@@ -1,0 +1,53 @@
+.Creation_Main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Creation_Second {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    backdrop-filter:blur(20px) brightness(110%);
+    border-radius: 20px;
+    border: 2PX solid black;
+}
+
+.Creation_Form {
+    width:1000px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-grow: 0;
+}
+.Creation_Minmax_box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.Creation_Temperaments {
+    display: flex;
+    flex-direction: row;
+}
+.Temperament_Boxes {
+    background: whitesmoke;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 150px;
+    width: 400px;
+    overflow: scroll;
+}
+.Tem_Input_Box {
+    padding: 5px;
+    width: 400px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.Temp_Box {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
+

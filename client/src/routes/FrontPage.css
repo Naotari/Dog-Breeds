@@ -1,0 +1,30 @@
+.FrontPage_Main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 180px;
+
+}
+
+.FrontPage_Second {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 0;
+    width:800px;
+    
+    border: 2px solid;
+    border-radius: 20px;
+    font-size: 25px;
+    backdrop-filter:blur(20px) brightness(110%);
+}
+
+.FrontPage_Button {
+    border: 5px solid black;
+    background-color: chocolate;
+    width: 200px;
+    border-radius: 20px;
+    margin-bottom: 50px;
+    Text-decoration: none;
+    color: white;
+}

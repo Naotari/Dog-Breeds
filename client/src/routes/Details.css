@@ -1,0 +1,17 @@
+.Details_Main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.Details_Second {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+    width: 40%;
+    backdrop-filter:blur(20px) brightness(110%);
+    border-radius: 20px;
+    border: 2PX solid black;
+}
+.Home_Box_Text {
+    font-size: 20px;
+}

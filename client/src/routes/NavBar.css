@@ -1,0 +1,26 @@
+.Navbar_Main {
+    /* background-color: antiquewhite; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: 2px solid;
+    backdrop-filter:blur(20px) brightness(110%);
+}
+
+.Navbar_img {
+    width: 50px;
+}
+
+.Navbar_Title{
+    font-size: 25px;
+    margin: 0px;
+    Text-decoration: none;
+    color: black;
+}
+
+.Navbar_Link {
+    font-size: 25px;
+    margin: 0px;
+    Text-decoration: none;
+    color: black;
+}

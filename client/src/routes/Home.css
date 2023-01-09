@@ -1,0 +1,46 @@
+.Home_Main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Home_Second {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+    width: 90%;
+    backdrop-filter:blur(20px) brightness(110%);
+    border-radius: 20px;
+    border: 2PX solid black;
+}
+.Home_Search_Params {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 2px solid;
+}
+
+
+.Home_Dog_Boxes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.Home_Dog_Box {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 20px;
+    margin: 5px;
+    padding-bottom: 10px;
+    width: 400px;
+}
+.Details_Button{
+    background-color: rgb(73, 73, 73);
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    Text-decoration: none;
+}
