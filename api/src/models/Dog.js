@@ -17,8 +17,13 @@ module.exports = (sequelize) => {
       allowNull: false,
       unique: true
     },
+    breed: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     owner: {
       type: DataTypes.STRING,
+      allowNull: false
     },
     height: {
       type: DataTypes.STRING,
@@ -38,6 +43,11 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true
+    },
+    deleted: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
     }
   }, 
   {

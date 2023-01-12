@@ -7,27 +7,39 @@
 .Creation_Second {
     display: flex;
     flex-direction: column;
-    margin-top: 100px;
+    margin-top: 50px;
     backdrop-filter:blur(20px) brightness(110%);
     border-radius: 20px;
     border: 2PX solid black;
 }
 
 .Creation_Form {
-    width:1000px;
+    width:1500px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-grow: 0;
+}
+.Creation_Image_Box {
     display: flex;
     align-items: center;
     flex-direction: column;
-    flex-grow: 0;
 }
-.Creation_Minmax_box {
+.Creation_Image {
+    border-radius: 20px;
+    height: 300px;
+    margin-bottom: 10px;
+}
+.Creation_Second_Column {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+.Creation_Second_Column_Box {
     display: flex;
     flex-direction: row;
-    align-items: center;
-}
-.Creation_Temperaments {
-    display: flex;
-    flex-direction: row;
+    align-content: space-between;
 }
 .Temperament_Boxes {
     background: whitesmoke;
@@ -51,3 +63,9 @@
     padding: 5px;
 }
 
+.Creation_Button {
+    width: 100px;
+    position: absolute;
+    bottom : 0px;
+    margin-left: 100px;
+}

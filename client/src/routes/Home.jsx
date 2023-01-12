@@ -46,14 +46,16 @@ const Home = (props) => {
         const dogArray = []
         axios.get(`/dogs`)
         .then(dogListApi => {
+            // console.log(dogListApi.data);
             dogListApi.data.forEach(dog => dogArray.push(
-                <div key={dog.name} className="Home_Dog_Box">
-                    <h1>{dog.name}</h1>
+                <div key={dog.id} className="Home_Dog_Box">
+                    <h1>{dog.breed}</h1>
                     <img src={dog.image} alt="dog not found" width="300px"/>
+                    {dog.name ? <p>Name: {dog.name}</p> : <p>Example</p>}
                     <p>Temperament: {dog.temperament}</p>
                     <p>Weight: {dog.weight === "NaN"?"0 - 0":dog.weight} pounds</p>
-                    {dog.created ? <p>Created Breed</p> : <p>Real Breed</p>}
                     <a href={process.env.REACT_APP_CLIENT + "/details/" + dog.id} className="Details_Button">Details</a>
+                    {dog.created ? <p>Created dog</p> : <p>Example dog</p>}
                 </div>
             ))
             setDogListRaw(dogArray);
@@ -95,19 +97,19 @@ const Home = (props) => {
     useEffect(() => {
 
         let tempDogsArray = []
-        //console.log(dogList);
+        // console.log(dogList);
         //console.log(tempFilter);
         let dogListH1 = false
         tempDogsArray= dogList.filter(dog => {
-            console.log(dog);
             if (dog.type === "h1") tempDogsArray = [<h1 key="not_found">No breeds found</h1>]
             else { 
+                // console.log(dog.props);
                 let tempsArray = []
-                if(dog.props.children[2].props.children[1]) {
-                    tempsArray = dog.props.children[2].props.children[1].split(", ")
+                if(dog.props.children[3].props.children[1]) {
+                    tempsArray = dog.props.children[3].props.children[1].split(", ")
                 }
                 //console.log(dog.props.children[2].props.children[1])
-                console.log(tempsArray);
+                //console.log(tempsArray);
                 if (tempsArray.includes(temperamentFilter))return true
                 return false
             }
@@ -132,14 +134,15 @@ const Home = (props) => {
 
             if(createdFilter === "real") {
                 let dogListTemp = []
-                //console.log(dogListFiltered);
+                console.log(dogListFiltered);
                 if (dogListFiltered.length === 0) {
+                    console.log(dogList);
                     if(dogList[0].type === "h1") dogListTemp.push(<h1 key="not_found">No breeds found</h1>)
-                    else dogListTemp = dogList.filter(dog => dog.props.children[4].props.children === "Real Breed")
+                    else dogListTemp = dogList.filter(dog => dog.props.children[6].props.children === "Example dog")
                 } else if(dogListFiltered[0].type === "h1") {
                     setDogListFiltered2(dogListFiltered)
                 } else {
-                    dogListTemp = dogListFiltered.filter(dog => dog.props.children[4].props.children === "Real Breed")
+                    dogListTemp = dogListFiltered.filter(dog => dog.props.children[6].props.children === "Example dog")
                 }
                 dogListTemp.length === 0 && (dogListTemp = [<h1 key="not_found">No breeds found</h1>]);
                 setDogListFiltered2(dogListTemp)
@@ -147,11 +150,11 @@ const Home = (props) => {
                 let dogListTemp = []
                 if (dogListFiltered.length === 0) {
                     if(dogList[0].type === "h1") dogListTemp.push(<h1 key="not_found">No breeds found</h1>)
-                    else dogListTemp = dogList.filter(dog => dog.props.children[4].props.children === "Created Breed")
+                    else dogListTemp = dogList.filter(dog => dog.props.children[6].props.children === "Created dog")
                 } else if(dogListFiltered[0].type === "h1") {
                     setDogListFiltered2(dogListFiltered)
                 } else {
-                    dogListTemp = dogListFiltered.filter(dog => dog.props.children[4].props.children === "Created Breed")
+                    dogListTemp = dogListFiltered.filter(dog => dog.props.children[6].props.children === "Created dog")
                 }
                 dogListTemp.length === 0 && (dogListTemp = [<h1 key="not_found">No breeds found</h1>]);
                 setDogListFiltered2(dogListTemp)
@@ -184,13 +187,14 @@ const Home = (props) => {
                 setDogListZeta([])
                 setSortWeight("")
                 setDogListZeta(dogListXero.sort((itemA, itemB) => {
-                    return itemA.key.localeCompare(itemB.key);
+                    console.log(itemA);
+                    return itemA.props.children[0].props.children.localeCompare(itemB.props.children[0].props.children);
                 }))
             } else if (sortAlphabetic === "Descendent") {
                 setDogListZeta([])
                 setSortWeight("")
                 setDogListZeta(dogListXero.sort((itemA, itemB) => {
-                    return itemB.key.localeCompare(itemA.key);
+                    return itemB.props.children[0].props.children.localeCompare(itemA.props.children[0].props.children);
                 }))
             }
         }, [sortAlphabetic, dogListXero])
@@ -211,18 +215,18 @@ const Home = (props) => {
                 setDogListZeta([])
                 setSortAlphabetic("")
                 setDogListZeta (ListaPerrosDesordenada.sort((itemA, itemB) => {
-                    //console.log(itemA.props.children[3].props.children[1].split(" - ")[0]);
-                    return (itemA.props.children[3].props.children[1].split(" - ")[0]) - (itemB.props.children[3].props.children[1].split(" - ")[0]);
+                    console.log(itemA.props.children);
+                    return (itemA.props.children[4].props.children[1].split(" - ")[0]) - (itemB.props.children[4].props.children[1].split(" - ")[0]);
                 }))
             } else if (sortWeight === "Descendent") {
                 setDogListZeta([])
                 setSortAlphabetic("")
                 setDogListZeta (ListaPerrosDesordenada.sort((itemA, itemB) => {
-                    return (itemB.props.children[3].props.children[1].split(" - ")[0]) - (itemA.props.children[3].props.children[1].split(" - ")[0]);
+                    return (itemB.props.children[4].props.children[1].split(" - ")[0]) - (itemA.props.children[4].props.children[1].split(" - ")[0]);
                 }))
             };
             ListaPerrosDesordenada = []
-            console.log(dogListZeta);
+            //console.log(dogListZeta);
         }, [sortWeight, dogListXero])
     //----------------------------------------Sort weight---------------------------------------
     //----------------------------------------Dog list zeta---------------------------------------
@@ -275,7 +279,7 @@ const Home = (props) => {
             <div className="Home_Second">
                 <div className="Home_Search_Params">
                     <div>
-                        <label htmlFor="search">Name(Breed):</label>
+                        <label htmlFor="search">Breed:</label>
                         <input type="text" key="search" className="searchBox" onChange={dogSearchHandler} value={dogSearch}></input>
                         <button onClick={dogSearchButtonHandler}>Search</button>
                     </div>
@@ -288,13 +292,13 @@ const Home = (props) => {
                         </div>
                         <div>
                             <input type="radio" id ="all" name="created_filter" value="all" checked={createdFilter === "all"} onChange={CreatedFilterHandler}></input>
-                            <label htmlFor="all">All Breeds</label>
+                            <label htmlFor="all">All Dogs</label>
 
                             <input type="radio" id ="real" name="created_filter" value="real" checked={createdFilter === "real"} onChange={CreatedFilterHandler}></input>
-                            <label htmlFor="real">Real Breeds</label>
+                            <label htmlFor="real">Examples</label>
 
                             <input type="radio" id ="created" name="created_filter" value="created" checked={createdFilter === "created"} onChange={CreatedFilterHandler}></input>
-                            <label htmlFor="created">Created Breeds</label>
+                            <label htmlFor="created">Created Dogs</label>
                         </div>
                     <div>
                         <div>

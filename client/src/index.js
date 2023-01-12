@@ -17,7 +17,7 @@ axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001"
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <video src="Dog_video_background.mp4" autoPlay muted loop poster='https://images3.alphacoders.com/860/860391.jpg'></video>
+      <video src="https://res.cloudinary.com/dyiymsxec/video/upload/v1673297463/Dog%20Breeds/Background/Dog_video_background.mp4" autoPlay muted loop poster='https://images3.alphacoders.com/860/860391.jpg'></video>
       <App />
     </BrowserRouter>
   </Provider>,

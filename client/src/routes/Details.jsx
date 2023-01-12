@@ -17,16 +17,16 @@ const Details = (props) => {
         async function fetchData() {
             const dogListApi = await axios.get(`/dogs/${urlRef}`)
             const dogArray = [
-                <div key={dogListApi.data.name}>
-                    <h1>{dogListApi.data.name}</h1>
+                <div key={dogListApi.data.id}>
+                    <h1>{dogListApi.data.breed}</h1>
                     <img src={dogListApi.data.image} alt="dog not found" width="300px"/>
                     <div className="Home_Box_Text">
+                        {dogListApi.data.name ? <p>Name: {dogListApi.data.name}</p> : <p>Example</p>}
                         <p>Temperament: {dogListApi.data.temperament}</p>
                         <p>Weight: {dogListApi.data.weight} pounds</p>
                         <p>Height: {dogListApi.data.height} cm.</p>
-                        <p>Life span: {dogListApi.data.year} years</p>
-                        <p>Owner: {dogListApi.data.owner}</p>
-                        {dogListApi.data.ceatedInDb ? <p>Created Breed</p> : <p>Real Breed</p>}
+                        {dogListApi.data.year && <p>Life span: {dogListApi.data.year} years</p>}
+                        {dogListApi.data.owner && <p>Owner: {dogListApi.data.owner}</p>}
                     </div>
                 </div>
             ]

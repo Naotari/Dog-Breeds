@@ -7,42 +7,6 @@ const dogs = Router();
 dogs.get("/",  async (req,res) => {
     try {
         const {name} = req.query
-        if (name) {
-            const breedList = []
-
-            const response = await axios.get(`https://api.thedogapi.com/v1/breeds/search?q=${name}`)
-            response.data.forEach(dog => {
-                console.log(dog)
-                if(!(breedList.includes(dog.name))) breedList.push({
-                    id: dog.id,
-                    image: `${dog.reference_image_id ? dog.reference_image_id === "HkC31gcNm" || dog.reference_image_id === "B12uzg9V7" || dog.reference_image_id === "_Qf9nfRzL" ? `https://cdn2.thedogapi.com/images/${dog.reference_image_id}.png` : `https://cdn2.thedogapi.com/images/${dog.reference_image_id}.jpg` : null}`,
-                    name: dog.name,
-                    temperament: dog.temperament,
-                    weight: dog.weight.metric,
-                })
-            })
-            
-            const dogs = await Dog.findAll();
-            dogs.forEach(dog => console.log(dog.name))
-            const dogs2 = dogs.filter(dog => {
-                const nameLow = dog.name.toLowerCase()
-                return nameLow.includes(name.toLowerCase())
-              })
-            dogs2.forEach(dog => {
-                if(!(breedList.includes(dog.name))) breedList.push({
-                    id: dog.id,
-                    image: dog.image,
-                    name: dog.name,
-                    temperament: dog.temperament,
-                    weight: dog.weight,
-                    created: dog.ceatedInDb
-                })
-            })
-
-            if (breedList.length === 0) throw Error("No Se encontro la raza ingresada")
-
-            res.status(201).send(breedList);
-        } else {
             const breedList = []
 
             const response = await axios.get("https://api.thedogapi.com/v1/breeds")
@@ -50,9 +14,10 @@ dogs.get("/",  async (req,res) => {
                 if(!(breedList.includes(dog.name))) breedList.push({
                     id: dog.id,
                     image: dog.image.url,
-                    name: dog.name,
+                    breed: dog.name,
                     temperament: dog.temperament,
                     weight: dog.weight.metric,
+                    height: dog.height.metric
                 })
             })
 
@@ -61,13 +26,15 @@ dogs.get("/",  async (req,res) => {
                 id: dog.id,
                 image: dog.image,
                 name: dog.name,
+                breed: dog.breed,
                 temperament: dog. temperament,
                 weight: dog.weight,
-                created: dog.ceatedInDb
+                height: dog.height,
+                created: dog.ceatedInDb,
+                deleted: dog.deleted,
             }))
 
             res.status(201).send(breedList);
-        }
     } catch (error) {
         res.status(400).send(error.message)
     }
@@ -83,12 +50,13 @@ dogs.get("/:id",  async (req,res) => {
                 id: dogDb[0].dataValues.id,
                 image: dogDb[0].dataValues.image,
                 name: dogDb[0].dataValues.name,
+                breed: dogDb[0].dataValues.breed,
                 owner: dogDb[0].dataValues.owner,
                 temperament: dogDb[0].dataValues.temperament,
                 weight: dogDb[0].dataValues.weight,
                 height: dogDb[0].dataValues.height,
-                year: dogDb[0].dataValues.years,
-                ceatedInDb: dogDb[0].dataValues.ceatedInDb
+                ceatedInDb: dogDb[0].dataValues.ceatedInDb,
+                deleted: dogDb[0].dataValues.deleted
             }
             res.status(201).send(dogDetails);
             
@@ -102,11 +70,12 @@ dogs.get("/:id",  async (req,res) => {
             const dogDetails = {
                 id: dog.id,
                 image: `${dog.reference_image_id ? `https://cdn2.thedogapi.com/images/${dog.reference_image_id}.jpg` : null}`,
-                name: dog.name,
+                breed: dog.name,
                 temperament: dog.temperament,
                 weight: dog.weight.metric,
                 height: dog.height.metric,
-                year
+                year,
+                origin: dog.origin 
             }
             res.status(201).send(dogDetails);
         }
@@ -120,9 +89,9 @@ dogs.get("/:id",  async (req,res) => {
 dogs.post("/", async (req,res) => {
     try {
         console.log(req.body);
-        const {image, name, owner, height, weight, years, temperament} = req.body;
-        if (!name || !height || !weight) throw Error("Falta informacion del perro.")
-        const newDog = await Dog.create({image, name, owner, height, weight, years, temperament});
+        const { name, breed, owner, image, height, weight, temperament } = req.body;
+        if ( !name || !breed || !owner || !image || !temperament ) throw Error("Falta informacion del perro.")
+        const newDog = await Dog.create({ name, breed, owner, image, height, weight, temperament });
         res.status(201).send(newDog);
     } catch (error) {
         res.status(400).send(error.message);
