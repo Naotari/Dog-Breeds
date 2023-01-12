@@ -23,7 +23,7 @@ const { conn } = require('./src/db.js');
 //Here we start up the app and the database
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => { //force true para volver a crear la DB 
+conn.sync({ force: process.env.FORCE === "true" ? true : false }).then(() => { //force true para volver a crear la DB 
   server.listen(process.env.PORT, () => {
     console.log(`%s listening at ${process.env.PORT}`); // eslint-disable-line no-console
   });

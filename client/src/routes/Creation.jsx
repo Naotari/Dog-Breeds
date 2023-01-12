@@ -268,12 +268,12 @@ const Creation = (props) => {
                     </div>
                         {ownerValidation}
                     <div  className="Creation_Second_Column_Box">
-                        <label htmlFor="height">Height(pounds):</label>
+                        <label htmlFor="height">Height(centimeters):</label>
                         <input type="number" key="height" onChange={heightChangeHandler} value={height}></input>
                     </div>
                         {heightValidation}
                     <div  className="Creation_Second_Column_Box">
-                        <label htmlFor="weight">Weight(centimeters):</label>
+                        <label htmlFor="weight">Weight(pounds):</label>
                         <input type="number" key="weight" onChange={weightChangeHandler} value={weight}></input>
                     </div>
                         {weightValidation}
