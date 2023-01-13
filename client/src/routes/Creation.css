@@ -11,24 +11,28 @@
     backdrop-filter:blur(20px) brightness(110%);
     border-radius: 20px;
     border: 2PX solid black;
+    width:90%;
 }
 
 .Creation_Form {
-    width:1500px;
+    width:100%;
     display: flex;
     align-items: flex-start;
     justify-content: space-around;
     flex-direction: row;
     flex-grow: 0;
+    flex-wrap: wrap;
 }
 .Creation_Image_Box {
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-bottom: 20px;
 }
 .Creation_Image {
     border-radius: 20px;
-    height: 300px;
+    width:95%;
+    max-width: 400px;
     margin-bottom: 10px;
 }
 .Creation_Second_Column {
@@ -41,18 +45,23 @@
     flex-direction: row;
     align-content: space-between;
 }
+.Creation_Third_Column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .Temperament_Boxes {
     background: whitesmoke;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     height: 150px;
-    width: 400px;
+    max-width: 400px;
+    width:95%;
     overflow: scroll;
 }
 .Tem_Input_Box {
     padding: 5px;
-    width: 400px;
     display:flex;
     flex-direction: column;
     align-items: center;
@@ -64,8 +73,8 @@
 }
 
 .Creation_Button {
-    width: 100px;
-    position: absolute;
-    bottom : 0px;
-    margin-left: 100px;
+    width: 150px;
+    height: 50px;
+    font-size: 30px;
+    margin-bottom: 10px;
 }

@@ -233,13 +233,21 @@ const Creation = (props) => {
             alert("Error: The Dog is already created.")
             setIsPending(false)
         });
+        setName("");
+        setBreed("");
+        setOwner("");
+        setHeight("0");
+        setWeight("0");
+        setTemperament("");
+        setImageCloud("");
     };
     //----------------------------------------------------Submit Form -------------------------------------------
     return(
         <div className="Creation_Main">
             <div className="Creation_Second">
             <h1>Post your Dog:</h1>
-            <form className="Creation_Form" onSubmit={submitHandler}>
+            <form onSubmit={submitHandler}>
+                <div className="Creation_Form">
                 <div className="Creation_First_Column">
                     <div className="Creation_Image_Box">
                         Picture:
@@ -277,9 +285,8 @@ const Creation = (props) => {
                         <input type="number" key="weight" onChange={weightChangeHandler} value={weight}></input>
                     </div>
                         {weightValidation}
-                    { isPending ? <button disable="true" className="Creation_Button">Creating ...</button> : <button  className="Creation_Button">Create</button>}
                 </div>
-                <div>
+                <div className="Creation_Third_Column">
                     <label htmlFor="temperament">Temperament:</label>
                     <div className="Temperament_Boxes">
                         {tempList}
@@ -292,7 +299,8 @@ const Creation = (props) => {
                     <p>Temperaments Added: {temperament}</p>
                     {temperamentsValidation}
                 </div>
-                
+                </div>
+                { isPending ? <button disable="true" className="Creation_Button">Creating ...</button> : <button  className="Creation_Button">Create</button>}
             </form>
             </div>
         </div>
