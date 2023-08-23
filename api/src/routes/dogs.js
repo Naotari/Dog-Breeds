@@ -13,7 +13,7 @@ dogs.get("/",  async (req,res) => {
             response.data.forEach(dog => {
                 if(!(breedList.includes(dog.name))) breedList.push({
                     id: dog.id,
-                    image: dog.image.url,
+                    image: "https://cdn2.thedogapi.com/images/" + dog.reference_image_id + ".jpg",
                     breed: dog.name,
                     temperament: dog.temperament,
                     weight: dog.weight.metric,
